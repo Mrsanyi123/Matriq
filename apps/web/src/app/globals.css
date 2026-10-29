@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+@import '../styles/tokens.css';
+
+/* Fonts come from next/font (see app/layout.tsx). */
+@theme inline {
+  --font-sans: var(--font-nunito), var(--font-ethiopic), ui-rounded, 'Segoe UI', system-ui, sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --animate-appear: appear var(--mq-motion-base) ease-out;
+  --animate-sheet: sheet-in var(--mq-motion-base) ease-out;
+  --animate-fade: fade-in var(--mq-motion-base) ease-out;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0.5;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(30px);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer base {
+  html {
+    background: var(--mq-bg);
+    color: var(--mq-ink);
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--mq-layout-top-bar-height) + 12px);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+    background: var(--mq-bg);
+    color: var(--mq-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.22;
+    letter-spacing: -0.65px;
+  }
+
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  summary {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--mq-focus);
+    outline-offset: 3px;
+  }
+
+  /* Ethiopic glyphs need a little more line height and no negative tracking. */
+  :lang(am) h1,
+  :lang(am) h2,
+  :lang(am) h3 {
+    letter-spacing: 0;
+    line-height: 1.35;
+  }
+}
+
+@layer components {
+  /* Learning path trail (prototype .trail) */
+  .mq-trail path {
+    fill: none;
+    stroke: var(--mq-trail);
+    stroke-width: 16;
+    stroke-linecap: round;
+  }
+  .mq-trail path.mq-trail-dashes {
+    stroke: var(--mq-bg);
+    stroke-width: 3;
+    stroke-dasharray: 1 12;
+  }
+
+  /* Tactile press: compress the ledge. */
+  .mq-press {
+    transition: transform var(--mq-motion-fast) var(--mq-motion-easing),
+      box-shadow var(--mq-motion-fast) var(--mq-motion-easing);
+  }
+  .mq-press:active:not(:disabled):not([aria-disabled='true']) {
+    transform: translateY(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
