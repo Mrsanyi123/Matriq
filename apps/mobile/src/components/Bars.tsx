@@ -13,7 +13,7 @@ export function LanguageButton({ bare = false }: { bare?: boolean }) {
     <Pressable
       onPress={openLanguageSheet}
       accessibilityRole="button"
-      accessibilityLabel={t('m.home.languageA11y', { language: option?.englishName ?? 'English' })}
+      accessibilityLabel={t('home.languageA11y', { language: option?.englishName ?? 'English' })}
       testID="language-button"
       style={({ pressed }) => [
         styles.langButton,
@@ -35,7 +35,7 @@ export function StreakChip({ days, onPress }: { days: number; onPress?: () => vo
     <Pressable
       onPress={onPress}
       accessibilityRole="button"
-      accessibilityLabel={t('m.home.streakA11y', { count: days })}
+      accessibilityLabel={t('home.streakA11y', { count: days })}
       testID="streak-chip"
       style={({ pressed }) => [styles.streak, pressed ? styles.pressed : null]}
     >

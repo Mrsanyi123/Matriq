@@ -9,7 +9,7 @@ import { isAppMessageKey, translateApp, translateOr } from './translate';
 describe('translateApp', () => {
   it('uses shared translations and the web overlay', () => {
     expect(translateApp('am', 'nav.home')).toBe('መነሻ');
-    expect(translateApp('am', 'auth.tryDemo')).toBe('Try the demo without an account');
+    expect(translateApp('am', 'nav.collapse')).toBe('Collapse sidebar');
     expect(translateApp('am', 'lesson.readXp', { xp: 10 })).toBe('Lesson read · +10 XP');
   });
 

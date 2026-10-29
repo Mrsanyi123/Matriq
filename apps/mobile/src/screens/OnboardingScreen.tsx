@@ -282,7 +282,7 @@ export function OnboardingScreen() {
           testID="onboarding-name-input"
           label={t('onboarding.nameTitle')}
           hint={t('onboarding.nameHint')}
-          placeholder={t('m.onboarding.namePlaceholder')}
+          placeholder={t('onboarding.namePlaceholder')}
           value={draft.displayName}
           onChangeText={(v) => update({ displayName: v.slice(0, 40) })}
           autoCapitalize="words"

@@ -74,10 +74,10 @@ export function FunctionPlot({ data, title, caption }: { data: FunctionPlotData;
       <View style={styles.table} accessibilityLanguage="en">
         <View style={styles.row}>
           <AppText academic size={12} weight="700" style={styles.cell}>
-            {t('m.lesson.plotInput')}
+            {t('lesson.input')}
           </AppText>
           <AppText academic size={12} weight="700" style={styles.cell}>
-            {t('m.lesson.plotOutput')}
+            {t('lesson.output')}
           </AppText>
         </View>
         {data.points.map(([x, y]) => (

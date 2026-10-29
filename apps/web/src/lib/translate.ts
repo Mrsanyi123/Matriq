@@ -10,10 +10,8 @@ import { extraMessages, type ExtraMessageKey } from './i18n-extra';
 
 export type AppMessageKey = MessageKey | ExtraMessageKey;
 
-// `isMessageKey` in @matriq/i18n uses `in`, which also matches inherited
-// properties such as "toString"; those are excluded here.
 function isSharedKey(key: string): key is MessageKey {
-  return !(key in Object.prototype) && isMessageKey(key);
+  return isMessageKey(key);
 }
 
 function isExtraKey(key: string): key is ExtraMessageKey {

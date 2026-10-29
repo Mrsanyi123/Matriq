@@ -18,8 +18,8 @@ const CODE = /^\d{6}$/;
 
 function authErrorKey(error: unknown, step: 'email' | 'code'): AppMessageKey {
   const e = error as { status?: number; code?: string } | null;
-  if (e?.status === 429 || e?.code?.includes('rate_limit')) return 'm.auth.rateLimited';
-  if (step === 'code') return 'm.auth.invalidCode';
+  if (e?.status === 429 || e?.code?.includes('rate_limit')) return 'auth.rateLimited';
+  if (step === 'code') return 'auth.invalidCode';
   if (e?.code === 'email_address_invalid' || e?.code === 'validation_failed') return 'auth.invalidEmail';
   return 'common.error';
 }
@@ -54,7 +54,7 @@ export function WelcomeScreen() {
 
   async function verify() {
     if (!CODE.test(code.trim())) {
-      setError('m.auth.codeHint');
+      setError('auth.codeHint');
       return;
     }
     setBusy(true);
@@ -131,13 +131,13 @@ export function WelcomeScreen() {
                     maxLength={6}
                     returnKeyType="done"
                     onSubmitEditing={() => void verify()}
-                    hint={t('m.auth.codeHint')}
+                    hint={t('auth.codeHint')}
                     error={error ? t(error) : null}
                   />
                   <Button testID="verify-code" label={t('auth.verify')} onPress={() => void verify()} loading={busy} />
                   <View style={styles.row}>
                     <TextButton
-                      label={t('m.auth.changeEmail')}
+                      label={t('auth.changeEmail')}
                       color={palette.muted}
                       onPress={() => {
                         setStep('email');
@@ -145,14 +145,14 @@ export function WelcomeScreen() {
                         setError(null);
                       }}
                     />
-                    <TextButton label={t('m.auth.resend')} onPress={() => void send()} disabled={busy} />
+                    <TextButton label={t('auth.resend')} onPress={() => void send()} disabled={busy} />
                   </View>
                 </>
               )}
               <View style={styles.or}>
                 <View style={styles.line} />
                 <AppText size={12} weight="600" color={palette.muted}>
-                  {t('m.auth.or')}
+                  {t('auth.or')}
                 </AppText>
                 <View style={styles.line} />
               </View>
@@ -174,7 +174,7 @@ export function WelcomeScreen() {
             onPress={() => void session.startDemo()}
           />
           <AppText variant="caption" weight="400" color={palette.muted} align="center" style={styles.demoHint}>
-            {t('m.auth.demoHint')}
+            {t('auth.demoHint')}
           </AppText>
         </ScrollView>
       </KeyboardAvoidingView>

@@ -121,7 +121,7 @@ export function WeekStrip({ week }: { week: readonly WeekDay[] }) {
           key={day.date}
           style={styles.day}
           accessible
-          accessibilityLabel={`${formatDate(day.date, locale, { weekday: 'long', day: 'numeric', month: 'long' })}${day.active ? `, ${t('m.week.studied')}` : ''}`}
+          accessibilityLabel={`${formatDate(day.date, locale, { weekday: 'long', day: 'numeric', month: 'long' })}${day.active ? `, ${t('week.studied')}` : ''}`}
           testID={`week-${day.date}${day.active ? '-active' : ''}`}
         >
           <AppText size={10} weight="600" color={palette.muted}>

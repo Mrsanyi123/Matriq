@@ -57,7 +57,7 @@ export function ProfileScreen() {
             </View>
             <View style={styles.flex}>
               <AppText variant="heading" testID="profile-name">
-                {profile.data.displayName ?? t('m.profile.guest')}
+                {profile.data.displayName ?? t('profile.noName')}
               </AppText>
               {profile.data.gradeLevel ? (
                 <AppText variant="small" weight="400" color={palette.muted}>
@@ -70,7 +70,7 @@ export function ProfileScreen() {
                 </AppText>
               ) : null}
               <AppText variant="caption" weight="600" color={palette.green} style={styles.mode}>
-                {isDemo ? t('m.profile.demoAccount') : t('m.profile.signedInAs', { email: email ?? '' })}
+                {isDemo ? t('profile.demoAccount') : t('profile.signedInAs', { email: email ?? '' })}
               </AppText>
             </View>
           </View>
@@ -98,7 +98,7 @@ export function ProfileScreen() {
             ) : null}
             <Button
               testID="sign-out"
-              label={isDemo ? t('m.settings.exitDemo') : t('auth.signOut')}
+              label={isDemo ? t('demo.exit') : t('auth.signOut')}
               variant="quiet"
               leadingIcon="LogOut"
               icon={null}

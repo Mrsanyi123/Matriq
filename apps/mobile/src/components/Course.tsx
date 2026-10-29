@@ -53,7 +53,7 @@ export function CourseSwitch({
       onPress={onPress}
       testID="course-switch"
       accessibilityRole="button"
-      accessibilityLabel={t('m.course.subjectA11y', { subject: name, grade: grade ?? '' })}
+      accessibilityLabel={t('course.subjectA11y', { subject: name, grade: grade ?? '' })}
       style={({ pressed }) => [styles.switch, pressed ? styles.pressed : null]}
     >
       <SubjectGlyph slug={subject?.slug ?? 'mathematics'} iconKey={subject?.iconKey ?? 'function'} />
@@ -154,7 +154,7 @@ export function CourseSheet({ visible, onClose }: { visible: boolean; onClose: (
       {awaitingStream && pendingGrade !== null ? (
         <View style={styles.block}>
           <AppText variant="small" weight="400" color={palette.muted} style={styles.hint}>
-            {t('m.course.streamNeeded')}
+            {t('course.streamNeeded')}
           </AppText>
           {(options.data?.streams ?? []).map((s) => (
             <SheetOption

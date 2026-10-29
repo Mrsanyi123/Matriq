@@ -113,7 +113,7 @@ export function HomeContent({
           <>
             <AppText variant="body" color={palette.muted} style={styles.continueMeta}>
               {dashboard.subject
-                ? t('m.learn.noCourse', { subject: subjectLabel(t, dashboard.subject.slug, dashboard.subject.name) })
+                ? t('learn.noCourse', { subject: subjectLabel(t, dashboard.subject.slug, dashboard.subject.name) })
                 : t('dashboard.noCourse')}
             </AppText>
             <Button
@@ -130,7 +130,7 @@ export function HomeContent({
       <Card style={styles.block}>
         <View
           accessible
-          accessibilityLabel={t('m.home.goalA11y', { minutes: today.minutes, goal: today.goalMinutes })}
+          accessibilityLabel={t('home.goalA11y', { minutes: today.minutes, goal: today.goalMinutes })}
         >
           <View style={styles.rowBetween}>
             <View style={styles.rowGap}>

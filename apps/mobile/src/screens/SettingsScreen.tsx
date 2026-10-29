@@ -152,7 +152,7 @@ export function SettingsScreen() {
             />
           )}
           <Button
-            label={t('m.settings.exitDemo')}
+            label={t('demo.exit')}
             variant="quiet"
             icon={null}
             leadingIcon="LogOut"
@@ -163,7 +163,7 @@ export function SettingsScreen() {
         <View style={styles.account}>
           {session.state.status === 'signedIn' && session.state.email ? (
             <AppText variant="small" weight="400" color={palette.muted}>
-              {t('m.profile.signedInAs', { email: session.state.email })}
+              {t('profile.signedInAs', { email: session.state.email })}
             </AppText>
           ) : null}
           <Button

@@ -73,10 +73,13 @@
   --mq-radius-sm: 10px;
   --mq-radius-md: 14px;
   --mq-radius-lg: 17px;
+  --mq-radius-button: 16px;
+  --mq-radius-card: 18px;
   --mq-radius-xl: 22px;
   --mq-radius-node: 25px;
   --mq-radius-sheet: 27px;
   --mq-radius-frame: 36px;
+  --mq-radius-reward: 38px;
   --mq-radius-pill: 999px;
   --mq-ledge-primary: 0 4px 0 #3d662e;
   --mq-ledge-primary-pressed: 0 1px 0 #3d662e;
@@ -184,10 +187,13 @@
   --radius-sm: var(--mq-radius-sm);
   --radius-md: var(--mq-radius-md);
   --radius-lg: var(--mq-radius-lg);
+  --radius-button: var(--mq-radius-button);
+  --radius-card: var(--mq-radius-card);
   --radius-xl: var(--mq-radius-xl);
   --radius-node: var(--mq-radius-node);
   --radius-sheet: var(--mq-radius-sheet);
   --radius-frame: var(--mq-radius-frame);
+  --radius-reward: var(--mq-radius-reward);
   --radius-pill: var(--mq-radius-pill);
   --shadow-ledge-primary: var(--mq-ledge-primary);
   --shadow-ledge-primary-pressed: var(--mq-ledge-primary-pressed);

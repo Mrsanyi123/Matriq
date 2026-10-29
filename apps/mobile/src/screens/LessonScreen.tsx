@@ -144,7 +144,7 @@ export function LessonBody({
       {mode === 'full' && chapter.objectives.length > 0 ? (
         <View style={styles.objectives}>
           <AppText size={10} weight="800" color={palette.greenDark} uppercase>
-            {t('m.lesson.objectives')}
+            {t('lesson.objectives')}
           </AppText>
           {chapter.objectives.map((o) => (
             <View key={o} style={styles.objective}>
@@ -182,7 +182,7 @@ export function LessonBody({
         <View style={styles.chapterNav}>
           {chapter.previous ? (
             <TextButton
-              label={t('m.lesson.previous')}
+              label={t('lesson.previous')}
               leadingIcon="ChevronLeft"
               color={palette.muted}
               onPress={() => onChapter(chapter.previous!.slug)}

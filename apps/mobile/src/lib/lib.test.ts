@@ -76,8 +76,9 @@ describe('createAppTranslator', () => {
   it('uses shared translations and falls back to English for mobile-only keys', () => {
     const am = createAppTranslator('am');
     expect(am('nav.home')).not.toBe('Home');
-    expect(am('m.auth.or')).toBe('or');
-    expect(am('m.practice.questionOf', { current: 2, total: 3 })).toBe('2 / 3');
+    expect(am('auth.or')).toBe('ወይም');
+    expect(am('practice.empty')).toBe('This chapter has no practice questions yet.');
+    expect(am('practice.questionOf', { current: 2, total: 3 })).toBe('2 / 3');
     expect(createAppTranslator('en')('greeting.morning', { name: 'Selam' })).toBe('Good morning, Selam');
   });
 });

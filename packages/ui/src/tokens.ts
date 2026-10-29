@@ -102,10 +102,16 @@ export const radius = {
   sm: 10,
   md: 14,
   lg: 17,
+  /** Primary and secondary buttons. */
+  button: 16,
+  /** Stat tiles, badge cards, feedback cards. */
+  card: 18,
   xl: 22,
   node: 25,
   sheet: 27,
   frame: 36,
+  /** Results reward mark. */
+  reward: 38,
   pill: 999,
 } as const;
 

@@ -54,7 +54,7 @@ export function LearnScreen() {
       ) : path.data === null ? (
         <EmptyState
           title={t('comingSoon')}
-          body={t('m.learn.noCourse', {
+          body={t('learn.noCourse', {
             subject: dashboard.data?.subject
               ? subjectLabel(t, dashboard.data.subject.slug, dashboard.data.subject.name)
               : '',

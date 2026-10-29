@@ -51,7 +51,7 @@ export function BottomSheet({ visible, title, description, onClose, children, te
           style={StyleSheet.absoluteFill}
           onPress={onClose}
           accessibilityRole="button"
-          accessibilityLabel={t('m.close.sheet')}
+          accessibilityLabel={t('close.sheet')}
           importantForAccessibility="no"
           accessibilityElementsHidden
         />

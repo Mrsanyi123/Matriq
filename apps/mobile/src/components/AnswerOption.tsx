@@ -76,14 +76,14 @@ export function AnswerOption({ label, body, state, chosen, onPress, testID }: An
   const look = LOOK[state];
   const checked = state === 'right' || state === 'wrong' || state === 'locked';
   const suffix =
-    state === 'right' ? `, ${t('correctShort')}` : state === 'wrong' ? `, ${t('m.practice.yourAnswer')}` : '';
+    state === 'right' ? `, ${t('correctShort')}` : state === 'wrong' ? `, ${t('practice.yourAnswer')}` : '';
   return (
     <Pressable
       testID={testID}
       onPress={onPress}
       disabled={checked}
       accessibilityRole="radio"
-      accessibilityLabel={`${t('m.practice.optionA11y', { label, body })}${suffix}`}
+      accessibilityLabel={`${t('practice.optionA11y', { label, body })}${suffix}`}
       accessibilityLanguage="en"
       accessibilityState={{ checked: chosen, disabled: checked }}
       style={({ pressed }) => [

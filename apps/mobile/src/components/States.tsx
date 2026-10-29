@@ -28,7 +28,7 @@ export function LoadingState({ testID = 'loading' }: { testID?: string }) {
 export function errorMessageKey(error: unknown, online: boolean): AppMessageKey {
   if (!online) return 'offline.needsConnection';
   if (isMatriqApiError(error)) {
-    if (error.code === 'not_configured') return 'm.gate.accountUnavailable';
+    if (error.code === 'not_configured') return 'gate.accountUnavailable';
     if (error.code === 'network') return 'offline.needsConnection';
   }
   return 'common.error';

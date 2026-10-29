@@ -13,7 +13,7 @@ import {
   type OnboardingInput,
   type SubjectOption,
 } from '@matriq/validation';
-import type { ExtraMessageKey } from './i18n-extra';
+import type { MessageKey } from '@matriq/i18n';
 
 export type OnboardingStep = 'grade' | 'stream' | 'subjects' | 'exam' | 'language' | 'goal' | 'name';
 
@@ -47,7 +47,7 @@ export function stepError(
   step: OnboardingStep,
   draft: OnboardingDraft,
   subjects: readonly SubjectOption[],
-): ExtraMessageKey | null {
+): MessageKey | null {
   switch (step) {
     case 'grade':
       return draft.gradeLevel === null ? 'onboarding.gradeRequired' : null;

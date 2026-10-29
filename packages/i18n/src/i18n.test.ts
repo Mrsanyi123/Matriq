@@ -14,8 +14,8 @@ describe('translate', () => {
   });
 
   it('falls back to English for missing keys', () => {
-    expect(missingKeys('am')).toContain('auth.tryDemo');
-    expect(createTranslator('am')('auth.tryDemo')).toBe('Try the demo without an account');
+    expect(missingKeys('am')).toContain('nav.collapse');
+    expect(createTranslator('am')('nav.collapse')).toBe('Collapse sidebar');
   });
 
   it('leaves unknown placeholders untouched', () => {

@@ -57,13 +57,13 @@ export function AppGate() {
             {t('common.error')}
           </AppText>
           <AppText variant="small" weight="400" color={palette.muted} align="center">
-            {unavailable ? t('m.gate.accountUnavailable') : t('offline.needsConnection')}
+            {unavailable ? t('gate.accountUnavailable') : t('offline.needsConnection')}
           </AppText>
           <View style={styles.actions}>
             <Button label={t('common.retry')} variant="secondary" icon="RotateCcw" onPress={() => void profile.refetch()} />
             {unavailable ? (
               <Button
-                label={t('m.gate.useDemo')}
+                label={t('gate.useDemo')}
                 onPress={() => {
                   void session.signOut().then(() => session.startDemo());
                 }}

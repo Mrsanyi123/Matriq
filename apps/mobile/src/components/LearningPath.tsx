@@ -167,7 +167,7 @@ export function LearningPath({ chapters, currentChapterId, onOpen }: LearningPat
             onLayout={(e) => onRowLayout(i, e)}
             onPress={() => onOpen(chapter)}
             accessibilityRole="button"
-            accessibilityLabel={t('m.learn.chapterA11y', {
+            accessibilityLabel={t('learn.chapterA11y', {
               number: chapter.number,
               title: chapter.title,
               status,

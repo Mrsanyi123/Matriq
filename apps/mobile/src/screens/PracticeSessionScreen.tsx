@@ -174,7 +174,7 @@ export function PracticeFlow({ api, chapterId, onBack, onBackToChapters, onRevie
   if (!question) {
     return (
       <Screen header={header} testID="practice-session">
-        <EmptyState title={t('noQuestions')} body={t('m.practice.empty')} />
+        <EmptyState title={t('noQuestions')} body={t('practice.empty')} />
       </Screen>
     );
   }
@@ -190,7 +190,7 @@ export function PracticeFlow({ api, chapterId, onBack, onBackToChapters, onRevie
       />
       <View style={styles.meta}>
         <AppText size={11} weight="700" color={palette.muted} testID="question-meta">
-          {`${t('question')} ${t('m.practice.questionOf', { current: index + 1, total })}`}
+          {`${t('question')} ${t('practice.questionOf', { current: index + 1, total })}`}
         </AppText>
         {question.isDemo ? (
           <View style={styles.demoTag}>
@@ -353,12 +353,12 @@ function Results({
         </AppText>
       </View>
       <View style={styles.resultStats}>
-        <View style={styles.resultStat} accessible accessibilityLabel={`${summary.correct} / ${summary.total} ${t('m.results.score')}`}>
+        <View style={styles.resultStat} accessible accessibilityLabel={`${summary.correct} / ${summary.total} ${t('results.score')}`}>
           <AppText size={26} lineHeight={32} weight="800" testID="results-score">
             {`${summary.correct}/${summary.total}`}
           </AppText>
           <AppText variant="caption" weight="400" color={palette.muted}>
-            {t('m.results.score')}
+            {t('results.score')}
           </AppText>
         </View>
         <View style={styles.resultStat} accessible accessibilityLabel={`+${xp} ${t('xp')}`}>
@@ -375,7 +375,7 @@ function Results({
           <Icon name={achievementIcon(a.iconKey)} size={31} color={palette.rewardInk} />
           <View style={styles.flex}>
             <AppText size={10} weight="800" color={palette.greenDark} uppercase>
-              {t('m.results.newBadge')}
+              {t('results.newBadge')}
             </AppText>
             <AppText size={14} weight="700">
               {translateDynamic(t, `achievement.${a.slug}.title`, a.title)}
