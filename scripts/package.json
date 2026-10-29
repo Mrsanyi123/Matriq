@@ -1,0 +1,6 @@
+{
+  "name": "@matriq/scripts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Content pipeline scripts (Phase 3). See docs/CONTENT_PIPELINE.md."
+}
