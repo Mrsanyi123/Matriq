@@ -171,8 +171,17 @@ Run locally:
 MATRIQ_TEST_DATABASE_URL=postgres://postgres@localhost:5432/postgres pnpm db:test
 ```
 
-Not covered by these tests (needs a full Supabase stack): PostgREST table
-access used for reminders, Supabase Auth email delivery, Storage.
+Optional HTTP-level test (`tests/postgrest.test.ts`): runs the real
+`createSupabaseApi` through **PostgREST** (the API server inside Supabase) with
+`@supabase/postgrest-js` and self-signed JWTs — covers reminders via table
+access, isolation and error mapping over HTTP. It runs only when
+`MATRIQ_TEST_POSTGREST_URL`, `MATRIQ_TEST_JWT_SECRET` and
+`MATRIQ_TEST_REST_DB_URL` are set (PostgREST pointed at a database prepared
+with the shim, migrations and seed, connecting as an `authenticator` role
+granted `anon` and `authenticated`).
+
+Not covered (needs a full Supabase stack): Supabase Auth (GoTrue) email
+delivery and code verification, Storage.
 
 ## Generating TypeScript types
 

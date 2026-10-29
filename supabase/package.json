@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@matriq/config": "workspace:*",
+    "@supabase/postgrest-js": "^2.118.0",
     "@supabase/supabase-js": "^2.118.0",
     "@types/pg": "^8.23.1",
     "pg": "^8.23.1",
