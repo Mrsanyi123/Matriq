@@ -32,9 +32,9 @@ create policy "reference: read" on public.subjects for select to anon, authentic
 create policy "reference: read" on public.subject_offerings for select to anon, authenticated using (true);
 create policy "reference: read" on public.achievements for select to anon, authenticated using (true);
 create policy "editors: write" on public.subjects for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 create policy "editors: write" on public.subject_offerings for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 
 -- ---------------------------------------------------------------------------
 -- Curriculum: published rows are public (cacheable); staff see drafts.
@@ -49,48 +49,48 @@ grant insert, update, delete on public.curriculum_editions, public.units, public
   to authenticated;
 
 create policy "published or staff: read" on public.curriculum_editions for select to anon, authenticated
-  using (status = 'published' or public.is_staff());
+  using (status = 'published' or (select public.is_staff()));
 create policy "published or staff: read" on public.units for select to anon, authenticated
-  using (status = 'published' or public.is_staff());
+  using (status = 'published' or (select public.is_staff()));
 create policy "published or staff: read" on public.topics for select to anon, authenticated
-  using (status = 'published' or public.is_staff());
+  using (status = 'published' or (select public.is_staff()));
 create policy "published or staff: read" on public.lessons for select to anon, authenticated
-  using (status = 'published' or public.is_staff());
+  using (status = 'published' or (select public.is_staff()));
 create policy "published lesson or staff: read" on public.lesson_sections for select to anon, authenticated
   using (
-    public.is_staff()
+    (select public.is_staff())
     or exists (select 1 from public.lessons l where l.id = lesson_id and l.status = 'published')
   );
 
 create policy "editors: write" on public.curriculum_editions for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 create policy "editors: write" on public.units for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 create policy "editors: write" on public.topics for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 create policy "editors: write" on public.lessons for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 create policy "editors: write" on public.lesson_sections for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 
 -- Revision cards and videos: signed-in students see published items.
 grant select on public.revision_cards, public.videos, public.video_topic_links to authenticated;
 create policy "published or staff: read" on public.revision_cards for select to authenticated
-  using (status = 'published' or public.is_staff());
+  using (status = 'published' or (select public.is_staff()));
 create policy "editors: write" on public.revision_cards for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 create policy "published or staff: read" on public.videos for select to authenticated
-  using (review_status = 'published' or public.is_staff());
+  using (review_status = 'published' or (select public.is_staff()));
 create policy "editors: write" on public.videos for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 create policy "published or staff: read" on public.video_topic_links for select to authenticated
   using (
-    public.is_staff()
+    (select public.is_staff())
     or (status = 'published'
         and exists (select 1 from public.videos v where v.id = video_id and v.review_status = 'published'))
   );
 create policy "editors: write" on public.video_topic_links for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 
 -- ---------------------------------------------------------------------------
 -- Questions. Students may read published questions and options, but NOT the
@@ -106,33 +106,33 @@ grant select (id, question_id, position, label, body) on public.question_options
 grant select on public.question_topic_links, public.exam_papers to authenticated;
 
 create policy "published or staff: read" on public.questions for select to authenticated
-  using (status = 'published' or public.is_staff());
+  using (status = 'published' or (select public.is_staff()));
 create policy "editors: write" on public.questions for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 create policy "published question or staff: read" on public.question_options for select to authenticated
   using (
-    public.is_staff()
+    (select public.is_staff())
     or exists (select 1 from public.questions q where q.id = question_id and q.status = 'published')
   );
 create policy "editors: write" on public.question_options for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 create policy "published question or staff: read" on public.question_topic_links for select to authenticated
   using (
-    public.is_staff()
+    (select public.is_staff())
     or exists (select 1 from public.questions q where q.id = question_id and q.status = 'published')
   );
 create policy "editors: write" on public.question_topic_links for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 create policy "published or staff: read" on public.exam_papers for select to authenticated
-  using (status = 'published' or public.is_staff());
+  using (status = 'published' or (select public.is_staff()));
 create policy "editors: write" on public.exam_papers for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 
 -- Sources carry licensing notes: staff only.
 grant select on public.content_sources to authenticated;
-create policy "staff: read" on public.content_sources for select to authenticated using (public.is_staff());
+create policy "staff: read" on public.content_sources for select to authenticated using ((select public.is_staff()));
 create policy "editors: write" on public.content_sources for all to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
 
 -- ---------------------------------------------------------------------------
 -- Student identity
@@ -148,11 +148,11 @@ create policy "self: update" on public.profiles for update to authenticated
 grant select on public.user_roles to authenticated;
 grant insert, delete on public.user_roles to authenticated;
 create policy "self or admin: read" on public.user_roles for select to authenticated
-  using (user_id = (select auth.uid()) or public.has_role('admin'));
+  using (user_id = (select auth.uid()) or (select public.has_role('admin')));
 create policy "admin: grant" on public.user_roles for insert to authenticated
-  with check (public.has_role('admin'));
+  with check ((select public.has_role('admin')));
 create policy "admin: revoke" on public.user_roles for delete to authenticated
-  using (public.has_role('admin'));
+  using ((select public.has_role('admin')));
 
 -- Preferences and subjects change through update_my_preferences() /
 -- complete_onboarding(), which validate input; direct access is read-only.
@@ -222,17 +222,17 @@ create policy "self: delete" on public.study_reminders for delete to authenticat
 grant select, insert, update on public.content_import_jobs, public.content_review_items to authenticated;
 grant select on public.admin_audit_logs to authenticated;
 
-create policy "staff: read" on public.content_import_jobs for select to authenticated using (public.is_staff());
+create policy "staff: read" on public.content_import_jobs for select to authenticated using ((select public.is_staff()));
 create policy "editors: write" on public.content_import_jobs for insert to authenticated
-  with check (public.can_edit_content());
+  with check ((select public.can_edit_content()));
 create policy "editors: update" on public.content_import_jobs for update to authenticated
-  using (public.can_edit_content()) with check (public.can_edit_content());
-create policy "staff: read" on public.content_review_items for select to authenticated using (public.is_staff());
+  using ((select public.can_edit_content())) with check ((select public.can_edit_content()));
+create policy "staff: read" on public.content_review_items for select to authenticated using ((select public.is_staff()));
 create policy "editors: create" on public.content_review_items for insert to authenticated
-  with check (public.can_edit_content());
+  with check ((select public.can_edit_content()));
 create policy "reviewers: review" on public.content_review_items for update to authenticated
-  using (public.is_staff()) with check (public.is_staff());
-create policy "admin: read" on public.admin_audit_logs for select to authenticated using (public.has_role('admin'));
+  using ((select public.is_staff())) with check ((select public.is_staff()));
+create policy "admin: read" on public.admin_audit_logs for select to authenticated using ((select public.has_role('admin')));
 
 -- Role helpers are needed by policies; everything else is granted per function.
 revoke execute on all functions in schema public from public, anon, authenticated;
