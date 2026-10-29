@@ -1,0 +1,10 @@
+{
+  "name": "@matriq/config",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared TypeScript configuration for the Matriq monorepo.",
+  "files": [
+    "tsconfig.base.json",
+    "tsconfig.library.json"
+  ]
+}

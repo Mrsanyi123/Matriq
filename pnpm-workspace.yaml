@@ -1,0 +1,11 @@
+packages:
+  - apps/*
+  - packages/*
+  - supabase
+  - scripts
+
+# pnpm 10 blocks dependency lifecycle scripts unless allow-listed.
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - unrs-resolver

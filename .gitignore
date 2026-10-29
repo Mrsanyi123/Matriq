@@ -1,0 +1,37 @@
+node_modules/
+.turbo/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+
+# Expo / React Native
+.expo/
+web-build/
+apps/mobile/android/
+apps/mobile/ios/
+*.jks
+*.keystore
+!debug.keystore
+
+# Playwright
+playwright-report/
+test-results/
+
+# Env & secrets — never commit real values
+.env
+.env.*
+!.env.example
+
+# Supabase local state
+supabase/.branches/
+supabase/.temp/
+
+# Agent worktrees
+.claude/worktrees/
+
+.DS_Store

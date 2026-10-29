@@ -1,0 +1,4 @@
+{
+  "extends": "@matriq/config/tsconfig.library.json",
+  "include": ["src"]
+}
