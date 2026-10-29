@@ -128,3 +128,22 @@ describe('demo api', () => {
     expect((await api.getDashboard()).nextReminder?.nextAt).toBe('2026-10-30T15:00:00.000Z');
   });
 });
+
+describe('demo api error contract', () => {
+  it('rejects (never throws synchronously) on bad input', async () => {
+    const { api } = setup();
+    const calls = [
+      () => api.markLessonRead('00000000-0000-4000-8000-000000000000'),
+      () => api.startChapterPractice('00000000-0000-4000-8000-000000000000'),
+      () => api.submitAttempt({ sessionId: 'nope', questionId: 'x', optionId: 'y' }),
+      () => api.updatePreferences({ dailyGoalMinutes: 7 as never }),
+    ];
+    for (const call of calls) {
+      let result: Promise<unknown> | undefined;
+      expect(() => {
+        result = call();
+      }).not.toThrow();
+      await expect(result).rejects.toMatchObject({ name: 'MatriqApiError' });
+    }
+  });
+});

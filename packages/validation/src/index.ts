@@ -346,7 +346,7 @@ export const RecommendationSchema = z.object({
   id: z.string(),
   kind: z.enum(['start_chapter', 'practice_chapter', 'revisit_weak_chapter', 'keep_streak']),
   chapter: ChapterLinkSchema.nullable(),
-  /** i18n key plus English fallback; the chapter title is interpolated as {title}. */
+  /** An @matriq/i18n message key; apps translate it and interpolate the chapter title as {title}. */
   messageKey: z.string(),
 });
 export type Recommendation = z.infer<typeof RecommendationSchema>;

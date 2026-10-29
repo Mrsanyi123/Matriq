@@ -25,5 +25,7 @@ describe('translate', () => {
   it('narrows runtime keys', () => {
     expect(isMessageKey('rec.keepStreak')).toBe(true);
     expect(isMessageKey('nope')).toBe(false);
+    expect(isMessageKey('toString')).toBe(false);
+    expect(isMessageKey('__proto__')).toBe(false);
   });
 });

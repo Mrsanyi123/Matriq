@@ -38,7 +38,7 @@ export type Translator = ReturnType<typeof createTranslator>;
 
 /** True if `key` is a known message key (useful for keys built at runtime). */
 export function isMessageKey(key: string): key is MessageKey {
-  return key in en;
+  return Object.prototype.hasOwnProperty.call(en, key);
 }
 
 export const LANGUAGE_OPTIONS: readonly {

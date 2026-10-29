@@ -279,7 +279,7 @@ export function createDemoApi(storage: KeyValueStorage, options: DemoApiOptions 
       return profileOf(await load());
     },
 
-    updateProfile: (input: UpdateProfileInput) =>
+    updateProfile: async (input: UpdateProfileInput) =>
       mutate((s) => {
         if (input.displayName !== undefined) s.profile.displayName = input.displayName;
         if (input.gradeLevel !== undefined) s.profile.gradeLevel = input.gradeLevel;
@@ -291,7 +291,7 @@ export function createDemoApi(storage: KeyValueStorage, options: DemoApiOptions 
       return (await load()).preferences;
     },
 
-    updatePreferences: (input) => {
+    updatePreferences: async (input) => {
       const patch = parseOrThrow(UpdatePreferencesInputSchema, input);
       return mutate((s) => {
         s.preferences = { ...s.preferences, ...patch };
@@ -390,7 +390,7 @@ export function createDemoApi(storage: KeyValueStorage, options: DemoApiOptions 
       return detail;
     },
 
-    markLessonRead: (chapterId) => {
+    markLessonRead: async (chapterId) => {
       findChapter(chapterId);
       return mutate((s) => {
         const p = (s.progress[chapterId] ??= {
@@ -406,7 +406,7 @@ export function createDemoApi(storage: KeyValueStorage, options: DemoApiOptions 
       });
     },
 
-    startChapterPractice: (chapterId) => {
+    startChapterPractice: async (chapterId) => {
       const c = findChapter(chapterId);
       const sessionId = randomUuid();
       return mutate((s) => {
@@ -427,7 +427,7 @@ export function createDemoApi(storage: KeyValueStorage, options: DemoApiOptions 
       });
     },
 
-    submitAttempt: (input) => {
+    submitAttempt: async (input) => {
       const data = parseOrThrow(SubmitAttemptInputSchema, input);
       return mutate((s) => {
         const session = s.sessions[data.sessionId];
@@ -469,7 +469,7 @@ export function createDemoApi(storage: KeyValueStorage, options: DemoApiOptions 
       });
     },
 
-    completePracticeSession: (sessionId) =>
+    completePracticeSession: async (sessionId) =>
       mutate((s) => {
         const session = s.sessions[sessionId];
         if (!session) throw new MatriqApiError('not_found', 'Practice session not found');
@@ -525,7 +525,7 @@ export function createDemoApi(storage: KeyValueStorage, options: DemoApiOptions 
       return (await load()).reminders;
     },
 
-    createReminder: (input) => {
+    createReminder: async (input) => {
       const data = parseOrThrow(CreateReminderInputSchema, input);
       return mutate((s) => {
         const reminder: Reminder = { ...data, id: randomUuid(), enabled: true };
