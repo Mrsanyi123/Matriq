@@ -12,9 +12,10 @@ in the repository and verified by tests, not intentions.
 | Interface i18n en/am/om with prototype translations | ✅ (am/om new keys need native review) |
 | Database schema for all planned features, RLS, RPCs, reference data, demo seed | ✅ tested on PostgreSQL 16 |
 | `MatriqApi` contract; Supabase and on-device demo implementations | ✅ |
-| Web app shell, auth (email code), onboarding, dashboard | see web report in README |
-| Android app shell, auth, onboarding, dashboard | see mobile report in README |
-| Prototype parity: learning path, lesson reader, chapter practice, results, progress, language switch | see app reports |
+| Web app: sidebar shell, auth (email code), onboarding, dashboard | ✅ unit + Playwright e2e in demo mode; signed-in data layer tested against Postgres/PostgREST, Supabase Auth not exercised |
+| Android app: tabs, auth, onboarding, dashboard | ✅ unit tests, Android bundle export, expo-doctor; **not yet run on a device** |
+| Prototype parity: learning path, lesson reader (full/quick notes, function plot), chapter practice with hints, results, progress, language switch, offline banner | ✅ both apps |
+| Revision, Library, AI Tutor, Study Planner screens | Honest "coming soon" placeholders (later phases) |
 
 ## Phase 2 — Core learning
 

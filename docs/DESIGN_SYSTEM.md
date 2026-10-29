@@ -90,8 +90,9 @@ interface is Amharic or Afaan Oromoo.
 
 ## Shape, space and depth
 
-- Radii: `md 14` (buttons, icon buttons), `lg 17` (cards, options), `xl 22`
-  (large cards), `node 25` (path nodes), `sheet 27` (bottom sheets).
+- Radii: `md 14` (icon buttons, segmented), `button 16`, `lg 17` (options,
+  course switch), `card 18` (stat/badge/feedback cards), `xl 22` (large
+  cards), `node 25` (path nodes), `sheet 27` (bottom sheets), `reward 38`.
 - Page gutter: 22px on mobile (17px under 360px). Desktop content max width
   1080px; reading column max 680px.
 - Touch targets: **min 44×44**. Buttons are 53px tall.
@@ -167,8 +168,10 @@ left→`ChevronLeft`, star→`Star`, play→`Play`. Navigation definitions are i
 
 Interface languages: English, Amharic (አማርኛ), Afaan Oromoo. The prototype's
 translations are preserved verbatim in `packages/i18n`. Keys added for the
-production apps exist in English and partially in Amharic/Oromo; missing keys
-fall back to English. **All Amharic and Afaan Oromoo strings need review by
+production apps exist in English; the visible student-facing ones (dashboard,
+onboarding, sign-in, lesson, results) are also translated, and the remaining
+~70 (mostly accessibility labels and rare states) fall back to English —
+`missingKeys(lang)` lists them. **All Amharic and Afaan Oromoo strings need review by
 native speakers before launch** — including tone (the prototype's Amharic uses
 the informal masculine second person, e.g. "ትችላለህ"; consider gender-neutral
 or polite forms).

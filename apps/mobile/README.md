@@ -74,9 +74,9 @@ the app is in the foreground (`src/lib/study-time.ts`, ≤1800 s per call).
 
 ### Strings
 
-Shared strings come from `@matriq/i18n`. Mobile-only strings live in
-`src/i18n/mobile-strings.ts` (English, `m.*` keys) until they move into the
-shared package. Academic content is always rendered in English
+All interface strings come from `@matriq/i18n` (shared with the web app).
+`src/i18n/mobile-strings.ts` is reserved for strings that can never apply to
+the web app and is currently empty. Academic content is always rendered in English
 (`<AppText academic>`, `accessibilityLanguage="en"`).
 
 ## Checks

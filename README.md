@@ -72,6 +72,38 @@ pnpm build
 Without Supabase configured, both apps still run in **demo mode** (on-device
 progress, bundled demo content) and say so in the UI.
 
+## Run the apps
+
+Web (http://localhost:3000):
+
+```bash
+pnpm --filter @matriq/web dev
+```
+
+Android (Expo; press `a` for an emulator, or use a development build):
+
+```bash
+pnpm --filter @matriq/mobile start
+```
+
+Details: [apps/web/README.md](apps/web/README.md),
+[apps/mobile/README.md](apps/mobile/README.md) (including EAS builds and the
+Google Play release checklist).
+
+## What is verified
+
+| Check | Command | Result |
+| --- | --- | --- |
+| Typecheck + unit tests, all 10 workspaces | `pnpm typecheck && pnpm test` | 19/19 turbo tasks pass |
+| Database: migrations, RLS, RPCs, real data layer | `pnpm db:test` | 38 tests (+3 optional PostgREST HTTP tests) |
+| Web production build | `pnpm --filter @matriq/web build` | passes |
+| Web end-to-end (demo mode, Playwright) | `pnpm --filter @matriq/web test:e2e` | 3 tests pass |
+| Android JS bundle (Hermes) | `pnpm --filter @matriq/mobile export:android` | builds (6.7 MB) |
+
+**Not verified yet:** running on a real Android device/emulator (no Android
+SDK in the build environment), Supabase Auth email delivery against a real
+project, and native screen-reader behaviour.
+
 ## Phase status
 
 See [docs/ROADMAP.md](docs/ROADMAP.md).

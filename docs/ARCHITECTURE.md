@@ -43,6 +43,13 @@
 Gradle) is most reliable with a flat `node_modules`. pnpm still gives a strict
 lockfile and fast installs.
 
+### React version
+
+Both apps pin **React 19.3.0** (the version Expo SDK 58 requires), enforced by
+a root `pnpm.overrides`. With a hoisted `node_modules`, two React versions
+cause "invalid hook call" failures in shared test tooling. Upgrade React in
+both apps together, following the Expo SDK.
+
 ### TypeScript
 
 Pinned to **TypeScript 6.0.x**. TypeScript 7 (native compiler) is available
@@ -83,8 +90,8 @@ and offer only the demo.
   `verifyOtp({ type: 'email' })`). Works identically on web and Android
   without deep-link setup, and students don't need to manage passwords.
   Additional providers (phone OTP, Google) can be enabled later in Supabase.
-- **Web:** `@supabase/ssr` cookie sessions; middleware refreshes the session
-  and protects app routes.
+- **Web:** `@supabase/ssr` cookie sessions; `src/proxy.ts` (Next 16's name for
+  middleware) refreshes the session and protects app routes.
 - **Mobile:** `@supabase/supabase-js` with session persistence in
   `expo-secure-store` (chunked) or AsyncStorage, `detectSessionInUrl: false`.
 - **Guest:** on-device demo (`createDemoApi`). A future option is Supabase
