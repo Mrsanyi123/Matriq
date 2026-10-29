@@ -17,7 +17,8 @@
     "@matriq/demo-content": "workspace:*",
     "@matriq/types": "workspace:*",
     "@matriq/validation": "workspace:*",
-    "@supabase/supabase-js": "^2.118.0"
+    "@supabase/supabase-js": "^2.118.0",
+    "zod": "^4.1.0"
   },
   "devDependencies": {
     "@matriq/config": "workspace:*",

@@ -1,0 +1,58 @@
+# Supabase CLI configuration for local development (`supabase start`).
+# Hosted projects are configured in the Supabase dashboard; keep the auth
+# settings below in sync with it.
+project_id = "matriq"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 17
+
+[db.seed]
+enabled = true
+# Demo curriculum for local development only. Never seed production with it.
+sql_paths = ["./seed/demo_curriculum.sql"]
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+# Captures sign-in emails locally at http://localhost:54324
+enabled = true
+port = 54324
+
+[storage]
+enabled = true
+file_size_limit = "20MiB"
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000", "matriq://"]
+jwt_expiry = 3600
+enable_refresh_token_rotation = true
+enable_signup = true
+# Guests use the on-device demo; anonymous accounts are not used yet.
+enable_anonymous_sign_ins = false
+
+[auth.rate_limit]
+email_sent = 4
+token_verifications = 30
+
+[auth.email]
+enable_signup = true
+# Students sign in with a 6-digit one-time code (no password, no deep link).
+enable_confirmations = false
+otp_length = 6
+otp_expiry = 900
+
+[auth.email.template.magic_link]
+subject = "Your Matriq sign-in code"
+content_path = "./templates/sign-in-code.html"

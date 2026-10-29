@@ -1,0 +1,29 @@
+{
+  "name": "@matriq/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Supabase migrations, seed and database tests for Matriq.",
+  "scripts": {
+    "seed:generate": "tsx scripts/generate-sql.ts seed",
+    "reference:generate": "tsx scripts/generate-sql.ts reference",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@matriq/api-client": "workspace:*",
+    "@matriq/core": "workspace:*",
+    "@matriq/demo-content": "workspace:*",
+    "@matriq/types": "workspace:*",
+    "@matriq/validation": "workspace:*"
+  },
+  "devDependencies": {
+    "@matriq/config": "workspace:*",
+    "@supabase/supabase-js": "^2.118.0",
+    "@types/pg": "^8.23.1",
+    "pg": "^8.23.1",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.5"
+  }
+}
