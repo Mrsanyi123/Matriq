@@ -20,7 +20,9 @@ function fakeSupabase() {
     startAutoRefresh: jest.fn(async () => undefined),
     stopAutoRefresh: jest.fn(async () => undefined),
   };
-  return { auth, client: { auth } as unknown as SupabaseClient };
+  // Server answers as if the JWT were missing, so we can see the call is real.
+  const rpc = jest.fn(async () => ({ data: null, error: { code: '42501', message: 'Not signed in' } }));
+  return { auth, rpc, client: { auth, rpc } as unknown as SupabaseClient };
 }
 
 let ctx: SessionContextValue;
@@ -30,7 +32,7 @@ function Probe() {
 }
 
 async function setup(initial: Record<string, string> = {}) {
-  const { auth, client } = fakeSupabase();
+  const { auth, rpc, client } = fakeSupabase();
   const storage = createMemoryStorage(initial);
   await render(
     <QueryClientProvider client={new QueryClient()}>
@@ -39,12 +41,12 @@ async function setup(initial: Record<string, string> = {}) {
       </SessionProvider>
     </QueryClientProvider>,
   );
-  return { auth, storage };
+  return { auth, rpc, storage };
 }
 
 describe('SessionProvider with Supabase', () => {
   it('signs in with an email one-time code and switches to the Supabase API', async () => {
-    const { auth, storage } = await setup({ [DEMO_CHOICE_KEY]: '1' });
+    const { auth, rpc, storage } = await setup({ [DEMO_CHOICE_KEY]: '1' });
     expect((await screen.findByText('demo:demo')).props.children).toBe('demo:demo');
     expect(ctx.accountsAvailable).toBe(true);
 
@@ -60,9 +62,10 @@ describe('SessionProvider with Supabase', () => {
     expect(screen.getByTestId('status').props.children).toBe('signedIn:supabase');
     expect(await storage.getItem(DEMO_CHOICE_KEY)).toBeNull();
 
-    // The real data layer is still in progress: it must fail loudly, never fall back to demo data.
+    // Account data comes from the server; errors surface instead of falling back to demo data.
     const error = await ctx.api!.getDashboard().catch((e: unknown) => e);
-    expect(isMatriqApiError(error) && error.code).toBe('not_configured');
+    expect(rpc).toHaveBeenCalledWith('get_learner_facts', { p_subject_slug: null });
+    expect(isMatriqApiError(error) && error.code).toBe('unauthorized');
 
     await act(() => ctx.signOut());
     expect(auth.signOut).toHaveBeenCalled();
